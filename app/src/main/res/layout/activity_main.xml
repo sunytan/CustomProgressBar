@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         
@@ -15,6 +16,19 @@
             android:max="100"
             app:color_reach="#FFFF0000"
             app:color_unreach="#FF00FF00"
+            />
+
+
+        <com.young.customprogressbar.view.CycleProgressBar
+            android:id="@+id/cycle_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:radius="100dp"
+            app:color_reach="#FFFF0000"
+            app:color_unreach="#FF00FF00"
+            app:text_size="15sp"
+            android:max="100"
+            android:progress="40"
             />
         
     </LinearLayout>

@@ -19,12 +19,12 @@ public class HoritationProgressBar extends ProgressBar {
     private static final int DEFAULT_REACH_HEIGHT = 3;//dp
     private static final int DEFAULT_UNREACH_HEIGHT = 1;//dp
     Paint mPaint = new Paint();
-    private int color_reach = DEFAULT_REACH_COLOR;
-    private int color_unreach = DEFAULT_UNREACH_COLOR;
-    private int color_text = DEFAULT_REACH_COLOR;
-    private float text_size = sp2px(DEFAULT_TEXT_SIZE);
-    private float reach_height = dp2px(DEFAULT_REACH_HEIGHT);
-    private float unreach_height = dp2px(DEFAULT_UNREACH_HEIGHT);
+    protected int color_reach = DEFAULT_REACH_COLOR;
+    protected int color_unreach = DEFAULT_UNREACH_COLOR;
+    protected int color_text = DEFAULT_REACH_COLOR;
+    protected float text_size = sp2px(DEFAULT_TEXT_SIZE);
+    protected float reach_height = dp2px(DEFAULT_REACH_HEIGHT);
+    protected float unreach_height = dp2px(DEFAULT_UNREACH_HEIGHT);
     private int mRealWidth;
     private int mTextOffect = 2;
 
@@ -65,8 +65,7 @@ public class HoritationProgressBar extends ProgressBar {
 
 
     @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
+    protected synchronized void onDraw(Canvas canvas) {
         // draw reach_bar
         canvas.save();
         canvas.translate(getPaddingLeft(), getHeight() / 2);
@@ -105,12 +104,11 @@ public class HoritationProgressBar extends ProgressBar {
             canvas.drawLine(start,0,mRealWidth,0,mPaint);
         }
 
-
+        canvas.restore();
     }
 
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
 
 
@@ -132,11 +130,11 @@ public class HoritationProgressBar extends ProgressBar {
         mRealWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
     }
 
-    private float dp2px(int dp) {
+    protected float dp2px(int dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
-    private float sp2px(int sp) {
+    protected float sp2px(int sp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp
                 , getResources().getDisplayMetrics());
     }
